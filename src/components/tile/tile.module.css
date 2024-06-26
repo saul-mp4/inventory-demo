@@ -1,7 +1,12 @@
 .tile {
-	border: 1px solid black;
+	border: 1px solid white;
 	width: 32px;
 	height: 32px;
-	background: black;
-	opacity: 15%;
+	background-color: black;
+	opacity: 75%;
+}
+
+.tile:hover {
+	cursor: pointer;
+	background-color: #737373;
 }

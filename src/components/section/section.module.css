@@ -1,3 +1,7 @@
 .outer {
 	position: relative;
 }
+
+.title {
+	margin: 0 0 12px 0;
+}

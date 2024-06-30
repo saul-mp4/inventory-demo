@@ -1,12 +1,23 @@
 .tile {
 	border: 1px solid white;
-	width: 32px;
-	height: 32px;
-	background-color: black;
 	opacity: 75%;
+}
+
+.empty {
+	background-color: black;
+}
+
+.busy {
+	background-color: #002D62;
+}
+
+.selecting {
+	background-color: #ffd700;
 }
 
 .tile:hover {
 	cursor: pointer;
 	background-color: #737373;
 }
+
+

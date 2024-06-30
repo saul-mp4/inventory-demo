@@ -7,26 +7,61 @@ export default {
 }
 
 export const Primary = {}
+
 export const CustomSize = {
 	args: {
-		width: 12,
-		height: 6
+		tileMatrix: [
+			[0, 0, 0],
+			[0, 0, 0],
+			[0, 0, 0]
+		]
 	}
 }
 
-const items = [
-	{
-		id: 1,
-		name: "apple",
-		position: [1, 1],
-		size: [1, 1],
-		quantity: 2,
-		weight: 0.5,
-	}
-]
-
 export const OneItem = {
 	args: {
-		inventoryItems: items,
+		tileMatrix: [
+			[0, 0, 0],
+			[0, 1, 0],
+			[0, 0, 0]
+		],
+		inventoryItems: [
+			{
+				id: 1,
+				name: "apple",
+				position: [1, 1],
+				size: [1, 1],
+				quantity: 2,
+				weight: 0.5,
+			}
+		],
+	}
+}
+
+export const SeveralItems = {
+	args: {
+		tileMatrix: [
+			[0, 1, 1, 0],
+			[0, 1, 0, 0],
+			[0, 0, 0, 0]
+		],
+		inventoryItems: [
+			{
+				id: 1,
+				name: "apple",
+				position: [1, 1],
+				size: [1, 1],
+				quantity: 2,
+				weight: 0.5,
+			},
+			{
+				id: 2,
+				name: "gun",
+				position: [1, 0],
+				size: [2, 1],
+				quantity: 1,
+				weight: 1,
+			}
+		]
 	}
 }

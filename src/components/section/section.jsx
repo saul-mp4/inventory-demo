@@ -1,47 +1,54 @@
 import React from "react";
 import { Tile } from "../tile/tile";
 import { Item } from "../item/item";
+
 import style from "./section.module.css";
+import global from "../../global";
 
 /**
  * Inventory section.
  * Renders grid. Places items depending on their order.
  * @component
- * @param width - number of tiles horizontally
- * @param height - number of tiles verticaly
+ * @param tileMatrix - 2 dimensional array with 0 or 1 values that indicates if tile empty or not.
  * @param inventoryItems - array of object that contains information about item
  * @param title - title of section
  * @param maxWeight - total sum of items' weight that section can contain
  */
 export const Section = (props) => {
-	const {width = 4, height = 4, inventoryItems = []} = props;
+	const {title="Name", tileMatrix = [[0, 0], [0, 0]], inventoryItems = []} = props;
+
+	const height = tileMatrix.length;
+	const width = tileMatrix[0].length;
 
 	return(
-		<div 
-			className={style.outer}
-			style={{
-				width: `${width*32}px`,
-				height: `${height*32}px`,
-			}}	
-		>
+		<div> 
+			<h2 className={style.title}>{title}</h2>
 			<div 
+				className={style.outer}
 				style={{
-					display: "grid",
-					gridTemplateColumns: `repeat(${width}, 1fr)`
-				}}
+					width: `${width * global.tile}px`,
+					height: `${height * global.tile}px`,
+				}}	
 				>
-				{new Array(width*height).fill(0).map(() => {
+				<div 
+					style={{
+						display: "grid",
+						gridTemplateColumns: `repeat(${width}, 1fr)`
+					}}
+					>
+					{tileMatrix.flat().map((v, i) => {
+						return(
+							<Tile key={i} busy={v}/>
+						)
+						})
+					}
+				</div>
+				{inventoryItems.length > 0 && inventoryItems.map((item) => {
 					return(
-					<Tile />
+						<Item key={item.id} itemObject={item}/>
 					)
-					})
-				}
+				})}
 			</div>
-			{inventoryItems.length > 0 && inventoryItems.map((item) => {
-				return(
-					<Item key={item.id} itemObject={item}/>
-				)
-			})}
 		</div>
 	)
 }

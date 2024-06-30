@@ -1,10 +1,12 @@
-import { Tile, Section } from "./components";
+import { Section } from "./components";
+import { usePocketState } from "./state/section";
 
 function App() {
+	const pocket = usePocketState();
+
   return (
     <>
-			<h1>Hello</h1>
-			<Section width={7}/>
+			<Section title={pocket.title} tileMatrix={pocket.matrix} inventoryItems={pocket.items}/>
     </>
   )
 }

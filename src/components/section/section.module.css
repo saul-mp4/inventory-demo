@@ -1,5 +1,6 @@
 .outer {
 	position: relative;
+	margin: 16px 0;
 }
 
 .title {

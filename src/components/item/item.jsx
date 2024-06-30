@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import Draggable from "react-draggable";
-import { usePocketState } from "../../state/section";
+import { useStoreState } from "../../state/state";
 
 import styles from "./item.module.css";
 import global from "../../global";
@@ -11,10 +11,10 @@ import global from "../../global";
  * @param itemObject - object with inventory item properties 
  */
 export const Item = (props) => {
-	const { itemObject } = props;
+	const { itemObject, section } = props;
 
 	const [x, y] = itemObject.position;
-	const moveItem = usePocketState((state) => state.moveItem);
+	const moveItem = useStoreState((state) => state.moveItem);
 	
   const [w, h] = itemObject.size;
 
@@ -28,11 +28,11 @@ export const Item = (props) => {
 		const newX = conditionalRound(data.x / global.step)
 		const newY = conditionalRound(data.y / global.step)
 
-		const changed = newX > 0 || newX < 0
+		const changed = newX > 0 || newX < 0 ||
 			newY > 0 || newY < 0;
 
 		if (changed) {
-			moveItem(itemObject.id, newX + x, newY + y);
+			moveItem(itemObject.id, newX + x, newY + y, false, section);
 		}
 
     setPosition({ x: data.x, y: data.y });
@@ -42,7 +42,7 @@ export const Item = (props) => {
 		const newX = conditionalRound(data.x / global.step) + x
 		const newY = conditionalRound(data.y / global.step) + y
 
-		moveItem(itemObject.id, newX, newY, true);
+		moveItem(itemObject.id, newX, newY, true, section);
 
     setPosition({ x: 0, y: 0 });
   };

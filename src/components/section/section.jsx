@@ -45,7 +45,7 @@ export const Section = (props) => {
 				</div>
 				{inventoryItems.length > 0 && inventoryItems.map((item) => {
 					return(
-						<Item key={item.id} itemObject={item}/>
+						<Item key={item.id} itemObject={item} section={title.toLowerCase()}/>
 					)
 				})}
 			</div>

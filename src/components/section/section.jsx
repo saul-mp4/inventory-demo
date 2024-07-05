@@ -1,6 +1,7 @@
 import React from "react";
 import { Tile } from "../tile/tile";
 import { Item } from "../item/item";
+import {useDroppable} from "@dnd-kit/core";
 
 import style from "./section.module.css";
 import global from "../../global";
@@ -26,20 +27,23 @@ export const Section = (props) => {
 			<div 
 				className={style.outer}
 				style={{
-					width: `${width * global.tile}px`,
-					height: `${height * global.tile}px`,
-				}}	
-				>
+					width: `${width * (global.tile+2)}px`,
+					height: `${height * (global.tile+2)}px`,
+				}}
+			>
 				<div 
 					style={{
 						display: "grid",
 						gridTemplateColumns: `repeat(${width}, 1fr)`
 					}}
 					>
-					{tileMatrix.flat().map((v, i) => {
-						return(
-							<Tile key={i} busy={v}/>
-						)
+					{tileMatrix.map((row, rI) =>{
+						const tileRow = row.map((v, i) => {
+								return(
+									<Tile key={`${i}_${rI}`} state={v} section={title.toLowerCase()} position={[i, rI]}/>
+								)
+							})
+						return tileRow.flat();
 						})
 					}
 				</div>
